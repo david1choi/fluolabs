@@ -1,0 +1,42 @@
+add_library('minim')
+from letter import Letter
+
+letters = []
+
+
+
+def setup():
+    global typeSound
+    size(600,600)
+    background(220)
+    textSize(32)
+    
+    minim = Minim(this)
+    typeSound = minim.loadSample("type.mp3")
+    
+def draw():
+    background(220)
+
+    for i in range (len(letters)):
+        letters[i].display()
+        letters[i].update()
+    
+    
+    fill(0)
+    text(str(len(letters)), width - 100, 32)
+        
+def keyTyped():
+    typeSound.trigger()
+    if (key == ' '):
+        del letters[:]
+
+    else:
+        addLetter(key)
+            
+def addLetter(ch):
+    temp = Letter(ch, random(width), 0, color(random(256), random(256), random(256)))
+    #print(temp.ch, temp.x, temp.y, temp.col)
+    letters.append(temp)
+    # print(letters)
+    # print(letters[ - 1].ch)
+    # print(len(letters))
