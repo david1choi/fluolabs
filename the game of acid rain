@@ -1,0 +1,70 @@
+add_library('minim')
+from letter import Letter
+letters = []
+maxSize = 3
+def setup():
+    global typeSound
+    size(600,600)
+    background(220)
+    textSize(32)
+    
+    minim = Minim(this)
+    typeSound = minim.loadSample("type.mp3")
+    
+    
+def draw():
+    background(220)
+
+    for i in range (len(letters)):
+        letters[i].display()
+        letters[i].update()
+        
+        
+        # fill(letters[i].col)
+        # text(letters[i].ch, letters[i].x, letters[i].y)
+        
+        # letters[i].y += 1
+        # if (letters[i].y > height):
+        #     letters[i].y = 0
+            
+    fill(0)
+    text(str(len(letters)), width - 100, 32)
+    
+    # add letters
+    while(len(letters) < maxSize):
+        addRandomLetter()
+        
+def keyTyped():
+    
+    for i in range(len(letters) -1, -1, -1):
+        if (letters[i].ch == key):
+            del letters[i]
+            typeSound.trigger()
+    # else errorsound trigger
+def addLetter(ch):
+    print(ch, ord(ch))
+    temp = Letter(ch, random(width), 0, color(random(256), random(256), random(256)))
+    letters.append(temp)
+
+def addRandomLetter():
+    temp = Letter(unichr(97 + random(26)), random(width), 0, color(random(256), random(256),random(256)))
+    letters.append(temp)
+    
+    
+    letter.py
+    class Letter():
+    def __init__(self, ch, x, y, col):
+        self.ch = ch
+        self.x = x
+        self.y = y
+        self.col = col
+        
+    def display(self):
+        fill(self.col)
+        text(self.ch, self.x, self.y)
+        
+    def update(self):
+        self.y += 1
+        if (self.y > height):
+            self.y = 0        
+    
