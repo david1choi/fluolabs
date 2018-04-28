@@ -1,0 +1,31 @@
+import cfg
+
+class Letter():
+    
+    def __init__(self, ch, x, y, col):
+        self.ch = ch
+        self.x = x
+        self.y = y
+        self.col = col
+        
+    def display(self):
+        fill(self.col)
+        text(self.ch, self.x, self.y)
+        
+    def update(self):
+        global life
+        self.y += 1
+        
+        if (self.y > height):
+            self.y = 0
+            
+            cfg.life -= 1
+            cfg.light = True
+            if (cfg.life == 0):
+                noLoop()
+                
+    def onScreen(self):
+        if (self.y > 0):
+            return(True)
+        else:
+            return(False)
