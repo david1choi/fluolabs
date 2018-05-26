@@ -1,0 +1,31 @@
+t = 0
+inc = .01
+def setup():
+    size(600, 600)
+
+    
+    
+def draw():
+    global t
+    background(0)
+    
+    stroke(255)
+    
+    # random points
+    noFill()
+    beginShape()
+    for i in range(width):
+        vertex(i, random(height/2))
+    endShape()
+        
+    # smooth points
+    noFill()
+    beginShape()
+    frameStart = t
+    for i in range(width):
+        y = noise(t)
+        y = map(y, 0, 1, height/2, height)
+        vertex(i, y)
+        t += inc
+    endShape()
+    t = frameStart + inc*10
