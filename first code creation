@@ -1,0 +1,27 @@
+x = 50
+y = 50
+x2 = 100
+y2 = 100
+def setup():
+    size(600, 600)
+    background(0)
+    
+def draw():
+    global x, x2
+    global y, y2
+    ellipse(x, y, 100, 100)
+    fill(255, 0, 0)
+    x = x+1
+    y = y+1
+    if x-50>width:
+        x = random(width)
+    if y-50>height:
+        y = random(height)
+        
+    ellipse(x2, y2, 100, 100)
+    x2 = x2+1
+    y2 = y2+1
+    if x2-50>width:
+        x2 = random(width)
+    if y2-50>height:
+        y2 = random(height)
