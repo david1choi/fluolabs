@@ -1,0 +1,27 @@
+x = 0
+y = 0
+w = 600
+h = 600
+
+scl = 20
+rows = w / scl
+cols = h / scl
+
+def setup():
+    size(800, 800)
+    print(rows, cols)
+    
+
+def draw():
+    background(0)
+    noFill()
+    stroke(255)
+    rect(x, y, w, h)
+    
+    stroke(255, 0, 0)
+    for i in range(1, rows):
+        line(0, i*scl, w, i*scl)
+        print(i*scl)
+        
+    noLoop()
+    
