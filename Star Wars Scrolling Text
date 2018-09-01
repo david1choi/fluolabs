@@ -1,0 +1,35 @@
+x = 0
+y = 0
+w = 600
+h = 600
+speed = 1
+txt = '    Coding and AI technologies are being developed at the speed of light and this technology greatly influences our daily lives in many ways and now, the customary way of teaching cannot compensate for such a speed.\n    Through coding we want to help maximizing the infinite potential of our kids so that they can solve challenging school projects or real world problems creatively and effectively.\n    We believe that the ones that have access to knowledge (that enables you to code) are the ones that can truly make an impact on the very world itself!\n    Fluo labs offers an experience where kids can learn coding and have fun at the same time. In a small classroom settings kids have a lot of interactions with the instructor from fundamental typing skills to advanced coding concepts.\n    We would be happy to invite your kids to come join us surfing at the exciting and thrilling sea of coding!'
+
+
+scl = 20
+rows = w/scl
+
+def setup():
+    size(800, 800, P3D)
+    
+    
+def draw():
+    global y, speed
+    background(0)
+    noFill()
+    stroke(255)
+    speed = map(mouseX, 0, width, 0, 5)
+    text("y:" + str(y), width/2, 50)
+    translate(width/2, height/2)
+    rotateX(radians(45))
+    fill(238, 213, 75)
+    textSize(width*.03)
+    text(txt, -w/2, y, w, height*3)
+    y = y - speed
+    
+
+    
+    if (y < - 1900):
+        y = 250
+        
+        
