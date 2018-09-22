@@ -1,0 +1,48 @@
+shipX = []
+shipY = []
+
+w = 600
+h = 600
+speed = 1
+gunX = 0
+
+def setup():
+    size(800, 800, P3D)
+
+def draw():
+    global y
+    background(0)
+    noFill()
+    stroke(255)
+    # display info
+    text("ships: " + str(len(shipX)), 50, 50)
+    
+    if (len(shipY) > 0):
+        text("shipY[0]: " + str(shipY[0]), 50, 80)
+    
+    translate(width/2, height/2)
+    rotateX(radians(45))
+
+    # display space ship
+    for i in range(len(shipX)):
+        stroke(random(256), random(256), random(256))
+        rect(shipX[i] - width/2, shipY[i] - height/2, 50, 50)
+        
+    # update space ships
+    for i in range(len(shipX)):
+        shipY[i] = shipY[i] - 1
+        
+        if(shipY[i] < -1000):
+            shipY[i] = 800
+
+    # laser gun, at the end of draw()
+    stroke(255)
+    y = height/2
+    triangle(gunX - 20, y, gunX, y - 60, gunX + 20, y)
+    
+def mouseClicked():
+    global x, y
+    x = mouseX
+    y = mouseY
+    shipX.append(mouseX)
+    shipY.append(mouseY)
