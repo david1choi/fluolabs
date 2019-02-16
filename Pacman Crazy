@@ -1,0 +1,87 @@
+diameter = 40
+mouth = 45    # open mouth
+mSpeed = -3
+angle = 0
+xSpeed = 1
+ySpeed = 1
+radius = diameter/2
+portalHeight = 100
+portalWidth = 5
+def setup():
+    global px, py
+    size(800, 600)
+    px = width/2
+    py = height/2
+
+def draw():
+    global mouth, mSpeed, px, py
+    background(0)
+
+    fill(255, 255, 0)
+    textSize(24)
+    text("mouth= " + str(mouth), width/2, height/4)
+    text("mSpeed= " + str(mSpeed), width/2, height/4 + 20)
+    text("angle= " + str(angle), width/2, height/4 + 40)
+    pushMatrix()
+    translate(px, py)
+    rotate(radians(angle))
+    arc(0, 0, diameter, diameter, radians(mouth), radians(360-mouth))
+    popMatrix()
+    # draw the portals
+    #left portals
+    fill(255, 0, 0)
+    rect(0, height/2, portalWidth, portalHeight)
+    
+    
+    
+    
+    
+    
+    
+    # mouse animation
+    mouth = mouth + mSpeed
+    if (mouth < 0 or mouth > 45):
+        mSpeed = mSpeed * -1
+    
+    
+    # update pacman's position    
+    if (angle == 0 or angle == 180):
+        px += xSpeed
+        
+    if (angle == 90 or angle == 270):
+        py += ySpeed
+
+    if (px + radius > width): 
+        px = width - radius
+    elif (px - radius < 0):
+        px = radius
+    elif (py + radius > height):
+        py = height - radius
+    elif (py - radius < 0):
+        py = radius
+    
+    
+        
+        
+        
+def keyPressed():
+    global angle, xSpeed, ySpeed 
+    if (keyCode == RIGHT):
+        angle = 0 
+        xSpeed = 1
+        
+    elif (keyCode == LEFT ):
+        angle = 180
+        xSpeed = -1
+    
+    elif (keyCode == UP ):
+        angle = 270
+        ySpeed = -1
+        
+    elif (keyCode == DOWN):
+        angle = 90
+        ySpeed = 1
+        
+   
+        
+        
