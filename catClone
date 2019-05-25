@@ -1,0 +1,51 @@
+catx = []
+caty = []
+speed = []
+diam = 30
+
+ex = [300]
+ey = [300]
+espeed = [1]
+
+def setup():
+    size(600, 600)
+
+    
+
+def draw():
+    background(0)
+    
+    # Odd Cats
+    # show
+    noStroke()
+    for i in range(len(catx)):
+        circle(catx[i], caty[i], diam)
+    
+    # update
+    for i in range(len(catx)):
+        catx[i] = catx[i] + speed[i]
+    
+    # boundary checking
+    for i in range(len(catx)):
+        if (catx[i] < 0 or catx[i] > width):
+            speed[i] = speed[i] * -1
+    # Even Cats    
+    # show
+    noStroke()
+    for i in range(len(ex)):
+        circle(ex[i], ey[i], diam)
+    
+    # update
+    for i in range(len(ey)):
+        ey[i] = ey[i] + espeed[i]
+    
+    # boundary checking
+    for i in range(len(ey)):
+        if (ey[i] < 0 or ey[i] > height):
+            espeed[i] = espeed[i] * -1
+        
+
+def mousePressed():
+    catx.append(mouseX)
+    caty.append(mouseY)
+    speed.append(1)
